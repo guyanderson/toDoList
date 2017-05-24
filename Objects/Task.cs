@@ -22,6 +22,10 @@ namespace ToDoList.Objects
     {
       _description = newDescription;
     }
+    public int GetId()
+    {
+      return _id;
+    }
     public static List<Task> GetAll()
     {
       return _instances;
