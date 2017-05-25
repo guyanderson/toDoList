@@ -2,13 +2,13 @@ using System.Collections.Generic;
 
 namespace ToDoList.Objects
 {
-  public class Task
+  public class Tasks
   {
     private string _description;
     private int _id;
-    private static List<Task> _instances = new List<Task> {};
+    private static List<Tasks> _instances = new List<Tasks> {};
 
-    public Task (string description)
+    public Tasks (string description)
     {
       _description = description;
       _instances.Add(this);
@@ -26,7 +26,7 @@ namespace ToDoList.Objects
     {
       return _id;
     }
-    public static List<Task> GetAll()
+    public static List<Tasks> GetAll()
     {
       return _instances;
     }
@@ -38,7 +38,7 @@ namespace ToDoList.Objects
     {
       _instances.Clear();
     }
-    public static Task Find(int searchId)
+    public static Tasks Find(int searchId)
     {
       return _instances[searchId-1];
     }

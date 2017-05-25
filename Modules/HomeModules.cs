@@ -1,8 +1,8 @@
 using Nancy;
 using System.Collections.Generic;
-using Todo.Objects;
+using ToDoList.Objects;
 
-namespace ToDoList
+namespace ToDoList.Modules
 {
   public class HomeModule : NancyModule
   {
@@ -35,7 +35,7 @@ namespace ToDoList
       Get["/categories/{id}/tasks/new"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>();
         Category selectedCategory = Category.Find(parameters.id);
-        List<Task> allTasks = selectedCategory.GetTasks();
+        List<Tasks> allTasks = selectedCategory.GetTasks();
         model.Add("category", selectedCategory);
         model.Add("tasks", allTasks);
         return View["category_tasks_form.cshtml", model];
@@ -43,9 +43,9 @@ namespace ToDoList
       Post["/tasks"] = _ => {
         Dictionary<string, object> model = new Dictionary<string, object>();
         Category selectedCategory = Category.Find(Request.Form["category-id"]);
-        List<Task> categoryTasks = selectedCategory.GetTasks();
+        List<Tasks> categoryTasks = selectedCategory.GetTasks();
         string taskDescription = Request.Form["task-description"];
-        Task newTask = new Task(taskDescription);
+        Tasks newTask = new Tasks(taskDescription);
         categoryTasks.Add(newTask);
         model.Add("tasks", categoryTasks);
         model.Add("category", selectedCategory);
@@ -99,6 +99,6 @@ namespace ToDoList
       //   Task.ClearAll();
       //   return View["tasks_cleared.cshtml"];
       // };
-    }
-  }
-}
+//     }
+//   }
+// }
